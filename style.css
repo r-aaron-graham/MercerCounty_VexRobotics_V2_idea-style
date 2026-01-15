@@ -1,174 +1,101 @@
-/*
-==========================================
-Mercer County Schools VEX Robotics Website
-Style Sheet - Version 1.0.0
-==========================================
+/* ========================================
+   Mercer County Schools VEX Robotics
+   Complete Stylesheet
+   ======================================== */
 
-Table of Contents:
-1. CSS Variables & Root Styles
-2. Reset & Base Styles
-3. Custom Cursor (Desktop Only)
-4. Header & Navigation
-5. Mobile Menu
-6. Main Content & Layout
-7. Hero Section
-8. Section Styling
-9. Cards & Grids
-10. Achievement Cards
-11. Testimonials
-12. Video Components
-13. Journey Steps
-14. CTA Boxes
-15. Contact Section
-16. Video Modal
-17. Footer
-18. Animations & Keyframes
-19. Responsive - Tablet (1024px)
-20. Responsive - Mobile (768px)
-21. Responsive - Small Mobile (480px)
-22. Accessibility & Focus States
-23. Print Styles
-
-==========================================
-*/
-
-/* ==========================================
-   1. CSS Variables & Root Styles
-   ========================================== */
+/* CSS Variables for Color Scheme */
 :root {
-  /* Primary Brand Colors */
-  --primary-gold: #FFD700;
-  --vex-red: #E63946;
-  --wv-blue: #0033A0;
-  --accent-cyan: #00d9ff;
-  
-  /* Neutral Colors */
-  --navy-dark: #1a1f3a;
-  --navy-light: #2d3561;
-  --text-light: #f0f4f8;
-  --text-gray: #c1c9d4;
-  --card-bg: rgba(45, 53, 97, 0.6);
-  
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  
-  /* Border Radius */
-  --radius-sm: 10px;
-  --radius-md: 15px;
-  --radius-lg: 20px;
-  --radius-xl: 25px;
-  --radius-full: 999px;
-  
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.6s ease;
-  
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.7);
-  
-  /* Z-Index Scale */
-  --z-dropdown: 100;
-  --z-sticky: 500;
-  --z-header: 1000;
-  --z-modal: 2000;
-  --z-cursor: 9999;
+  --navy-dark: #0a1628;
+  --navy-med: #152844;
+  --navy-light: #1e3a5f;
+  --gold: #ffc107;
+  --gold-light: #ffd54f;
+  --gold-dark: #ffb300;
+  --blue-bright: #00bcd4;
+  --blue-electric: #03a9f4;
+  --white: #ffffff;
+  --gray-light: #eceff1;
+  --gray-med: #b0bec5;
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-med: rgba(0, 0, 0, 0.3);
+  --shadow-heavy: rgba(0, 0, 0, 0.5);
 }
 
-/* ==========================================
-   2. Reset & Base Styles
-   ========================================== */
+/* ========================================
+   Global Reset & Base Styles
+   ======================================== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(255, 215, 0, 0.2);
 }
 
 html {
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
-               Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  background: linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 50%, #0f1420 100%);
-  background-attachment: fixed;
-  color: var(--text-light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-med) 50%, var(--navy-light) 100%);
+  color: var(--white);
   line-height: 1.6;
-  min-height: 100vh;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-/* ==========================================
-   3. Custom Cursor (Desktop Only)
-   ========================================== */
-@media (hover: hover) and (pointer: fine) {
-  .cursor-glow {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: opacity var(--transition-fast), 
-                width var(--transition-fast), 
-                height var(--transition-fast);
-    opacity: 0;
-    z-index: var(--z-cursor);
-    will-change: transform;
-  }
-}
-
-/* ==========================================
-   4. Header & Navigation
-   ========================================== */
-header {
+/* Animated Circuit Background Pattern */
+body::before {
+  content: '';
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: var(--z-header);
-  background: rgba(26, 31, 58, 0.97);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 3px solid rgba(255, 215, 0, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 193, 7, 0.03) 50px, rgba(255, 193, 7, 0.03) 51px),
+    repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0, 188, 212, 0.03) 50px, rgba(0, 188, 212, 0.03) 51px);
+  pointer-events: none;
+  z-index: 0;
+  animation: circuitFlow 20s linear infinite;
 }
 
-.nav-container {
+@keyframes circuitFlow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* ========================================
+   Header & Navigation
+   ======================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid var(--gold);
+  box-shadow: 0 4px 20px var(--shadow-med);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  box-shadow: 0 4px 30px var(--shadow-heavy);
+  background: rgba(10, 22, 40, 0.98);
+}
+
+.header-container {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1.5rem;
+  justify-content: space-between;
+  padding: 1rem 2rem;
   position: relative;
 }
 
@@ -176,114 +103,107 @@ header {
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  z-index: calc(var(--z-header) + 1);
+  gap: 1rem;
+  z-index: 10;
 }
 
 .logo-img {
   width: 70px;
   height: 70px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 15px rgba(255, 215, 0, 0.5));
-  transition: transform var(--transition-base);
+  border-radius: 12px;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  object-fit: cover;
 }
 
 .logo-img:hover {
-  transform: scale(1.05);
-}
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 30px rgba(255, 193, 7, 0.7);
 }
 
 .logo-text h1 {
-  font-size: clamp(0.9rem, 2.5vw, 1.3rem);
-  color: var(--primary-gold);
+  font-size: 1.4rem;
+  color: var(--gold);
+  text-shadow: 0 2px 10px rgba(255, 193, 7, 0.5);
+  margin-bottom: 0.2rem;
   font-weight: 700;
-  line-height: 1.2;
 }
 
 .logo-text p {
-  font-size: clamp(0.75rem, 2vw, 0.95rem);
-  color: var(--text-gray);
+  font-size: 0.9rem;
+  color: var(--blue-bright);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
-/* Navigation Links */
+/* Navigation */
 nav {
   display: flex;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
 nav a {
   position: relative;
-  padding: 0.75rem 1.3rem;
-  color: var(--text-light);
+  padding: 0.8rem 1.5rem;
+  color: var(--white);
   text-decoration: none;
-  border-radius: var(--radius-xl);
-  transition: all var(--transition-base);
-  font-weight: 500;
-  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-  white-space: nowrap;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
   overflow: hidden;
 }
 
-nav a::after {
+nav a::before {
   content: '';
   position: absolute;
-  bottom: 5px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--primary-gold);
-  transition: all var(--transition-base);
-  transform: translateX(-50%);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.3), transparent);
+  transition: left 0.5s ease;
 }
 
-nav a:hover,
-nav a:focus {
-  background: rgba(255, 215, 0, 0.15);
-  transform: translateY(-2px);
-  color: var(--primary-gold);
-  outline: none;
+nav a:hover::before {
+  left: 100%;
 }
 
-nav a:hover::after,
-nav a:focus::after {
-  width: 80%;
+nav a:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
 }
 
 nav a.active {
-  background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
+  background: var(--gold);
   color: var(--navy-dark);
-  font-weight: 700;
-  box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 3px 10px rgba(255, 193, 7, 0.5);
 }
 
-/* ==========================================
-   5. Mobile Menu
-   ========================================== */
+/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   flex-direction: column;
   gap: 5px;
-  background: none;
-  border: none;
   cursor: pointer;
-  padding: 8px;
-  z-index: calc(var(--z-header) + 1);
+  padding: 10px;
+  z-index: 1001;
 }
 
 .menu-toggle span {
-  width: 28px;
+  width: 30px;
   height: 3px;
-  background: var(--primary-gold);
+  background: var(--gold);
   border-radius: 3px;
-  transition: all var(--transition-base);
+  transition: all 0.3s ease;
 }
 
 .menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(7px, 7px);
+  transform: rotate(45deg) translate(8px, 8px);
 }
 
 .menu-toggle.active span:nth-child(2) {
@@ -294,740 +214,433 @@ nav a.active {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* ==========================================
-   6. Main Content & Layout
-   ========================================== */
+/* ========================================
+   Main Content Container
+   ======================================== */
+
 main {
+  position: relative;
+  z-index: 1;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 7rem 1.5rem 3rem;
+  padding: 2rem;
 }
 
-/* ==========================================
-   7. Hero Section
-   ========================================== */
+/* ========================================
+   Hero Section
+   ======================================== */
+
 .hero {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   align-items: center;
-  margin-bottom: 3rem;
-  padding: 2rem 1.5rem;
-  background: radial-gradient(circle at top left, rgba(0, 51, 160, 0.2), transparent 60%);
-  border-radius: var(--radius-lg);
-  border: 2px solid rgba(255, 215, 0, 0.2);
+  padding: 4rem 0;
+  min-height: 500px;
 }
 
-/* Hero Banner */
-.hero-banner {
-  background: linear-gradient(135deg, var(--vex-red), var(--primary-gold));
-  color: var(--navy-dark);
-  padding: 0.7rem 1.3rem;
-  border-radius: var(--radius-xl);
-  display: inline-block;
-  font-weight: 700;
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  margin-bottom: 1.5rem;
-  box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-  text-align: center;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-}
-
-/* Hero Content */
 .hero-content h2 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: 3rem;
+  color: var(--gold);
+  text-shadow: 0 3px 15px rgba(255, 193, 7, 0.5);
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--primary-gold), var(--accent-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  animation: fadeInUp 0.8s ease;
+  font-weight: 800;
   line-height: 1.2;
 }
 
-.hero-content .subtitle {
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  color: var(--text-gray);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+.hero-content p {
+  font-size: 1.3rem;
+  color: var(--gray-light);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  animation: fadeInUp 1s ease;
 }
 
-/* Hero Statistics */
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
+  animation: fadeInUp 1.2s ease;
 }
 
-.stat-box {
-  background: rgba(26, 31, 58, 0.8);
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  border: 2px solid rgba(255, 215, 0, 0.3);
-  text-align: center;
-  transition: all var(--transition-base);
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.badge {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-electric));
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
-.stat-box:active {
-  transform: scale(0.98);
+.badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+  border-color: var(--gold);
 }
 
-.stat-number {
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  font-weight: 900;
-  color: var(--primary-gold);
-  display: block;
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  color: var(--text-gray);
-  margin-top: 0.5rem;
-}
-
-/* Hero Buttons */
 .hero-buttons {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
-  justify-content: center;
+  gap: 1rem;
+  animation: fadeInUp 1.4s ease;
 }
 
+/* Buttons */
 .btn {
-  padding: 0.9rem 1.8rem;
-  border: none;
-  border-radius: 30px;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
   font-weight: 600;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all var(--transition-base);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
-  min-height: 48px;
-  min-width: 48px;
-  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn:active {
-  transform: scale(0.97);
+.btn::after {
+  content: '→';
+  position: absolute;
+  right: -30px;
+  transition: right 0.3s ease;
+  font-size: 1.3rem;
+}
+
+.btn:hover::after {
+  right: 20px;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
   color: var(--navy-dark);
-  box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 5px 20px rgba(255, 193, 7, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 193, 7, 0.6);
+  padding-right: 3rem;
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text-light);
-  border: 2px solid var(--primary-gold);
+  color: var(--white);
+  border: 2px solid var(--blue-bright);
+  box-shadow: 0 5px 20px rgba(0, 188, 212, 0.3);
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--text-light);
-  border: 2px solid var(--accent-cyan);
+.btn-secondary:hover {
+  background: var(--blue-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 188, 212, 0.5);
+  padding-right: 3rem;
 }
 
-/* Hero Visual */
+/* Hero Visual/Logo Section */
 .hero-visual {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  order: -1;
-}
-
-.logo-showcase {
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
+  animation: fadeIn 1s ease;
 }
 
-.logo-showcase img {
+.hero-logo-container {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 50px rgba(255, 215, 0, 0.6));
+  max-width: 450px;
+}
+
+.hero-logo-container img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(255, 193, 7, 0.4));
   animation: float 6s ease-in-out infinite;
+  border-radius: 20px;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-}
-
-.circuit-lines {
+.glow-ring {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 110%;
   height: 110%;
+  border: 3px dashed var(--blue-bright);
   border-radius: 50%;
-  border: 2px dashed var(--accent-cyan);
+  animation: rotate 20s linear infinite;
   opacity: 0.3;
-  animation: rotate 25s linear infinite;
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.glow-ring::before,
+.glow-ring::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--gold);
 }
 
-/* ==========================================
-   8. Section Styling
-   ========================================== */
+.glow-ring::before {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.glow-ring::after {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ========================================
+   Sections
+   ======================================== */
+
 section {
-  margin-bottom: 3rem;
-  padding: 2.5rem 1.5rem;
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  border: 2px solid rgba(255, 215, 0, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-  animation: fadeInUp 0.6s ease-out;
+  margin: 4rem 0;
+  padding: 3rem 2rem;
+  background: rgba(21, 40, 68, 0.6);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 193, 7, 0.2);
+  box-shadow: 0 10px 40px var(--shadow-med);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+section:hover {
+  border-color: var(--gold);
+  box-shadow: 0 15px 50px rgba(255, 193, 7, 0.2);
+  transform: translateY(-5px);
 }
 
 section h2 {
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  margin-bottom: 1.5rem;
-  color: var(--primary-gold);
-  border-left: 6px solid var(--vex-red);
-  padding-left: 1rem;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
   position: relative;
+  display: inline-block;
+  font-weight: 800;
 }
 
-section h3 {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  color: var(--primary-gold);
-  margin: 2rem 0 1rem;
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--blue-bright));
+  border-radius: 2px;
 }
 
 section p {
-  color: var(--text-gray);
+  font-size: 1.1rem;
+  color: var(--gray-light);
   margin-bottom: 1.5rem;
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.8;
 }
 
-/* ==========================================
-   9. Cards & Grids
-   ========================================== */
-.cards-grid,
-.achievements-grid,
-.testimonials-grid,
-.video-grid,
-.journey-steps,
-.cta-grid {
+/* ========================================
+   Grid Layouts
+   ======================================== */
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
-/* Base Card Styles */
-.card,
-.achievement-card,
-.testimonial,
-.journey-step,
-.cta-box {
-  background: rgba(26, 31, 58, 0.9);
-  border-radius: var(--radius-lg);
-  padding: 1.8rem;
-  border: 2px solid transparent;
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.card:active,
-.achievement-card:active,
-.testimonial:active,
-.journey-step:active {
-  transform: scale(0.98);
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
+
+/* ========================================
+   Cards
+   ======================================== */
 
 .card {
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.8), rgba(10, 22, 40, 0.8));
+  border: 2px solid rgba(0, 188, 212, 0.3);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
 }
 
 .card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
-  transition: left var(--transition-slow);
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Card Icons */
-.card-icon,
-.achievement-icon,
-.cta-icon {
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-  margin-bottom: 1rem;
+.card:hover::before {
+  opacity: 1;
 }
 
-/* Card Titles */
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3);
+}
+
 .card h3 {
-  color: var(--primary-gold);
+  font-size: 1.5rem;
+  color: var(--gold);
   margin-bottom: 0.5rem;
-  font-size: clamp(1.3rem, 3vw, 1.6rem);
-}
-
-.card .subtitle,
-.achievement-card .achievement-title {
-  color: var(--vex-red);
   font-weight: 700;
+}
+
+.card .subtitle {
+  color: var(--blue-bright);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 1rem;
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: 600;
 }
 
-.card p,
-.achievement-card p {
-  color: var(--text-gray);
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  line-height: 1.7;
+.card p {
+  color: var(--gray-light);
+  font-size: 1rem;
+  margin-bottom: 0;
 }
 
-.card ul {
-  margin-left: 1.5rem;
-  color: var(--text-gray);
-  line-height: 1.8;
+/* ========================================
+   Video/Link Section
+   ======================================== */
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-.card ul li {
-  margin-bottom: 0.5rem;
-}
-
-/* ==========================================
-   10. Achievement Cards
-   ========================================== */
-.achievement-card {
-  background: linear-gradient(135deg, rgba(230, 57, 70, 0.2), rgba(255, 215, 0, 0.1));
-  border: 2px solid rgba(255, 215, 0, 0.3);
-  text-align: center;
-}
-
-.achievement-card h4 {
-  color: var(--primary-gold);
-  font-size: clamp(1.2rem, 3vw, 1.3rem);
-  margin-bottom: 0.5rem;
-}
-
-/* ==========================================
-   11. Testimonials
-   ========================================== */
-.testimonial {
-  border: 2px solid rgba(0, 217, 255, 0.3);
-}
-
-.testimonial::before {
-  content: '"';
-  position: absolute;
-  top: -5px;
-  left: 15px;
-  font-size: clamp(3rem, 8vw, 5rem);
-  color: rgba(255, 215, 0, 0.2);
-  font-family: Georgia, serif;
-  line-height: 1;
-}
-
-.testimonial-text {
-  color: var(--text-light);
-  font-style: italic;
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.testimonial-avatar {
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 1.2rem;
-  color: var(--navy-dark);
-}
-
-.testimonial-info h5 {
-  color: var(--primary-gold);
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
-  margin-bottom: 0.2rem;
-}
-
-.testimonial-info p {
-  color: var(--text-gray);
-  font-size: clamp(0.85rem, 2vw, 0.9rem);
-  margin: 0;
-}
-
-/* ==========================================
-   12. Video Components
-   ========================================== */
-.video-card {
+.video-link-card {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
-  background: var(--navy-dark);
-  transition: all var(--transition-base);
-  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  border: 3px solid rgba(0, 188, 212, 0.3);
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.9), rgba(10, 22, 40, 0.9));
+  text-decoration: none;
+  display: block;
 }
 
-.video-card:active {
-  transform: scale(0.98);
+.video-link-card:hover {
+  transform: scale(1.05);
+  border-color: var(--gold);
+  box-shadow: 0 10px 40px rgba(255, 193, 7, 0.4);
 }
 
-.video-thumbnail {
+.video-link-card img {
   width: 100%;
-  aspect-ratio: 16/9;
+  height: 200px;
   object-fit: cover;
   display: block;
 }
 
-.play-button {
+.video-link-content {
+  padding: 1.5rem;
+  background: rgba(10, 22, 40, 0.95);
+}
+
+.video-link-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.video-link-description {
+  font-size: 0.95rem;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+
+.video-link-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
+  width: 70px;
+  height: 70px;
+  background: var(--gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   color: var(--navy-dark);
-  transition: all var(--transition-base);
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 5px 20px rgba(255, 193, 7, 0.5);
+  transition: all 0.3s ease;
+  pointer-events: none;
 }
 
-.video-info {
-  padding: 1.2rem;
-  background: rgba(26, 31, 58, 0.95);
+.video-link-card:hover .video-link-icon {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 8px 30px rgba(255, 193, 7, 0.8);
 }
 
-.video-badge {
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  background: rgba(255, 215, 0, 0.2);
-  border: 1px solid var(--primary-gold);
-  border-radius: var(--radius-md);
-  font-size: clamp(0.75rem, 2vw, 0.8rem);
-  color: var(--primary-gold);
+/* ========================================
+   Footer
+   ======================================== */
+
+footer {
+  background: rgba(10, 22, 40, 0.9);
+  border-top: 3px solid var(--gold);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+footer p {
+  color: var(--gray-light);
+  font-size: 1rem;
   margin-bottom: 0.5rem;
 }
 
-.video-title {
-  color: var(--text-light);
-  font-weight: 700;
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
+/* ========================================
+   Animations
+   ======================================== */
 
-.video-date {
-  color: var(--text-gray);
-  font-size: clamp(0.85rem, 2vw, 0.9rem);
-}
-
-/* ==========================================
-   13. Journey Steps
-   ========================================== */
-.journey-step {
-  text-align: center;
-  border: 2px solid rgba(255, 215, 0, 0.3);
-}
-
-.step-number {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--navy-dark);
-  margin: 0 auto 1.5rem;
-  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
-}
-
-.journey-step h4 {
-  color: var(--primary-gold);
-  font-size: clamp(1.2rem, 3vw, 1.4rem);
-  margin-bottom: 1rem;
-}
-
-/* ==========================================
-   14. CTA Boxes
-   ========================================== */
-.cta-box {
-  background: linear-gradient(135deg, rgba(230, 57, 70, 0.3), rgba(255, 215, 0, 0.2));
-  border: 3px solid var(--primary-gold);
-  text-align: center;
-}
-
-.cta-box h3 {
-  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
-  margin-bottom: 1rem;
-}
-
-.cta-box p {
-  margin-bottom: 1.5rem;
-}
-
-/* ==========================================
-   15. Contact Section
-   ========================================== */
-.contact-info {
-  background: rgba(26, 31, 58, 0.9);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  margin-top: 2rem;
-  border: 2px solid var(--accent-cyan);
-}
-
-.contact-info h3 {
-  color: var(--accent-cyan);
-  margin-bottom: 1.5rem;
-}
-
-.contact-details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-.contact-text a {
-  color: var(--text-light);
-  text-decoration: none;
-  word-break: break-word;
-}
-
-.contact-text p {
-  margin: 0;
-  font-size: clamp(0.85rem, 2vw, 0.9rem);
-}
-
-/* ==========================================
-   16. Video Modal
-   ========================================== */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.96);
-  z-index: var(--z-modal);
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal-content {
-  width: 100%;
-  max-width: 1000px;
-  background: var(--navy-dark);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 3px solid var(--primary-gold);
-  box-shadow: 0 30px 80px rgba(255, 215, 0, 0.6);
-  animation: modalSlideIn 0.4s ease-out;
-}
-
-@keyframes modalSlideIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
   }
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background: rgba(45, 53, 97, 0.9);
-  border-bottom: 3px solid var(--primary-gold);
-}
-
-.modal-header h3 {
-  color: var(--primary-gold);
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
-  margin: 0;
-  padding-right: 1rem;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: var(--text-light);
-  font-size: 2rem;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.modal-close:active {
-  background: rgba(230, 57, 70, 0.4);
-  transform: scale(0.95);
-}
-
-.modal-body {
-  padding: 0.5rem;
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  background: #000;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* ==========================================
-   17. Footer
-   ========================================== */
-footer {
-  background: rgba(26, 31, 58, 0.98);
-  padding: 2.5rem 1.5rem;
-  border-top: 3px solid var(--primary-gold);
-  margin-top: 3rem;
-}
-
-.footer-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.footer-section h4 {
-  color: var(--primary-gold);
-  margin-bottom: 1rem;
-  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-}
-
-.footer-section p,
-.footer-section a {
-  color: var(--text-gray);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  transition: color var(--transition-base);
-  word-break: break-word;
-}
-
-.footer-section a:active {
-  color: var(--primary-gold);
-}
-
-.footer-bottom {
-  max-width: 1400px;
-  margin: 2rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 215, 0, 0.2);
-  text-align: center;
-  color: var(--text-gray);
-  font-size: clamp(0.85rem, 2vw, 0.9rem);
-}
-
-.footer-bottom p {
-  margin-bottom: 0.5rem;
-}
-
-/* ==========================================
-   18. Animations & Keyframes
-   ========================================== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -1035,246 +648,260 @@ footer {
   }
 }
 
-/* ==========================================
-   19. Desktop Hover Effects (Pointer Devices)
-   ========================================== */
-@media (hover: hover) and (pointer: fine) {
-  .stat-box:hover,
-  .card:hover,
-  .achievement-card:hover,
-  .testimonial:hover,
-  .journey-step:hover,
-  .cta-box:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-gold);
-    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-
-  .card:hover::before {
-    left: 100%;
-  }
-
-  .video-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 15px 50px rgba(0, 217, 255, 0.5);
-  }
-
-  .video-card:hover .play-button {
-    transform: translate(-50%, -50%) scale(1.15);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.7);
-  }
-
-  .btn-secondary:hover,
-  .btn-outline:hover {
-    background: rgba(255, 215, 0, 0.15);
-    transform: translateY(-2px);
-  }
-
-  .footer-section a:hover {
-    color: var(--primary-gold);
-    padding-left: 5px;
-  }
-
-  .modal-close:hover {
-    background: rgba(230, 57, 70, 0.4);
-    color: var(--vex-red);
-    transform: rotate(90deg);
+  50% {
+    transform: translateY(-20px);
   }
 }
 
-/* ==========================================
-   20. Responsive - Tablet (1024px)
-   ========================================== */
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 193, 7, 0.8);
+  }
+}
+
+/* ========================================
+   Responsive Design - Tablets
+   ======================================== */
+
 @media (max-width: 1024px) {
-  main {
-    padding: 6.5rem 1.5rem 2rem;
+  .header-container {
+    padding: 1rem 1.5rem;
   }
 
   .hero {
-    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
   }
 
-  .cards-grid,
-  .achievements-grid,
-  .testimonials-grid,
-  .video-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  .hero-content h2 {
+    font-size: 2.5rem;
+  }
+
+  section h2 {
+    font-size: 2rem;
   }
 }
 
-/* ==========================================
-   21. Responsive - Mobile (768px)
-   ========================================== */
+/* ========================================
+   Responsive Design - Mobile
+   ======================================== */
+
 @media (max-width: 768px) {
-  /* Mobile Menu */
-  .menu-toggle {
-    display: flex;
-  }
-
-  nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    background: rgba(26, 31, 58, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 100px 20px 20px;
-    gap: 0;
-    transition: right 0.4s ease;
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
-    z-index: calc(var(--z-header) - 1);
-  }
-
-  nav.active {
-    right: 0;
-  }
-
-  nav a {
-    width: 100%;
+  .header-container {
     padding: 1rem;
-    border-radius: var(--radius-sm);
-    margin-bottom: 0.5rem;
-    text-align: left;
   }
 
-  /* Layout Adjustments */
   .logo-img {
-    width: 60px;
-    height: 60px;
-  }
-
-  main {
-    padding: 6rem 1rem 2rem;
-  }
-
-  .hero {
-    padding: 1.5rem 1rem;
-  }
-
-  .hero-stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-  }
-
-  section {
-    padding: 2rem 1rem;
-  }
-
-  /* Single Column Grids */
-  .cards-grid,
-  .achievements-grid,
-  .testimonials-grid,
-  .video-grid,
-  .journey-steps,
-  .cta-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-details {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================
-   22. Responsive - Small Mobile (480px)
-   ========================================== */
-@media (max-width: 480px) {
-  .nav-container {
-    padding: 0.6rem 1rem;
+    width: 50px;
+    height: 50px;
   }
 
   .logo-text h1 {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .logo-text p {
     font-size: 0.7rem;
   }
 
-  .hero-banner {
-    font-size: 0.85rem;
-    padding: 0.6rem 1rem;
+  /* Mobile Navigation */
+  nav {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: rgba(10, 22, 40, 0.98);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+    backdrop-filter: blur(10px);
   }
 
-  .modal-content {
-    margin: 1rem;
+  nav.active {
+    left: 0;
   }
 
-  .modal-header {
-    padding: 0.8rem 1rem;
+  nav a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
   }
-}
 
-/* ==========================================
-   23. Accessibility & Focus States
-   ========================================== */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-*:focus-visible {
-  outline: 3px solid var(--primary-gold);
-  outline-offset: 2px;
-}
-
-/* ==========================================
-   24. Print Styles
-   ========================================== */
-@media print {
-  header {
-    position: static;
+  .menu-toggle {
+    display: flex;
   }
-  
+
+  /* Hero Section Mobile */
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-logo-container {
+    max-width: 300px;
+  }
+
+  /* Main Content Mobile */
   main {
-    padding-top: 1rem;
-  }
-
-  .cursor-glow,
-  .menu-toggle,
-  .modal,
-  footer,
-  .hero-buttons,
-  .video-card,
-  .cta-box {
-    display: none;
+    padding: 1rem;
   }
 
   section {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    padding: 2rem 1rem;
+  }
+
+  section h2 {
+    font-size: 1.8rem;
+  }
+
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-badges {
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   Responsive Design - Small Mobile
+   ======================================== */
+
+@media (max-width: 480px) {
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .badge {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  body::before,
+  .glow-ring,
+  header,
+  .menu-toggle,
+  .btn,
+  footer {
+    display: none;
   }
 
   body {
     background: white;
     color: black;
   }
+
+  section {
+    page-break-inside: avoid;
+    border: 1px solid #ddd;
+  }
 }
 
-/* ==========================================
-   End of Stylesheet
-   ========================================== */
+/* ========================================
+   Accessibility Enhancements
+   ======================================== */
+
+/* Focus styles for keyboard navigation */
+a:focus,
+button:focus,
+.video-link-card:focus {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --gold: #ffeb3b;
+    --blue-bright: #00e5ff;
+  }
+
+  .card,
+  section {
+    border-width: 3px;
+  }
+}
