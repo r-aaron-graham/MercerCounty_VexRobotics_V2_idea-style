@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mercer County Schools VEX Robotics Program - Building future engineers through hands-on robotics competition. 4-time World Championship qualifiers with 150+ active students.">
+    <meta name="keywords" content="VEX Robotics, Mercer County, West Virginia, STEM education, robotics competition, World Championship">
+    <meta name="author" content="Mercer County Schools">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mercer County VEX Robotics">
+    <meta property="og:description" content="Build. Code. Compete. Join WV's premier robotics program.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mercer County VEX Robotics">
+    
+    <title>Mercer County VEX Robotics | Build. Code. Compete.</title>
+    
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-gold: #FFD700;
+            --dark-gold: #CCA300;
+            --vex-red: #E63946;
+            --dark-red: #C42A35;
+            --bg-dark: #0A0E1A;
+            --bg-card: #151B2E;
+            --bg-card-hover: #1A2238;
+            --text-light: #FFFFFF;
+            --text-gray: #B0B8CC;
+            --border-color: rgba(255, 215, 0, 0.2);
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.3);
+            
+            --z-modal: 1000;
+            --z-header: 100;
+            --z-cursor: 9999;
+        }
+        
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* ===== CUSTOM CURSOR (Desktop Only) ===== */
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+            
+            .cursor-glow {
+                position: fixed;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: radial-gradient(circle, var(--primary-gold) 0%, transparent 70%);
+                pointer-events: none;
+                z-index: var(--z-cursor);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                mix-blend-mode: screen;
+            }
+            
+            .cursor-glow.active {
+                opacity: 0.6;
+            }
+        }
+        
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: var(--z-header);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: color var(--transition-fast);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transform: translateX(-50%);
+            transition: width var(--transition-normal);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 80%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 5px 0;
+            transition: var(--transition-normal);
+        }
+        
+        /* ===== MAIN CONTENT ===== */
+        main {
+            margin-top: 80px;
+        }
+        
+        section {
+            padding: var(--spacing-xl) var(--spacing-md);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-banner {
+            background: linear-gradient(135deg, var(--vex-red), var(--dark-red));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-glow);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), #FFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-box {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-gold);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            display: block;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            border: none;
+            min-width: 180px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+            color: var(--bg-dark);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+        }
+        
+        /* ===== SECTION STYLING ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* ===== CARDS & GRIDS ===== */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--vex-red));
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-gold);
+            background: var(--bg-card-hover);
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* ===== ACHIEVEMENT CARDS ===== */
+        .achievement-card {
+            text-align: center;
+        }
+        
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-school {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-card {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gold), var(--vex-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-info {
+            flex: 1;
+        }
+        
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        /* ===== VIDEO COMPONENTS ===== */
+        .video-card {
+            cursor: pointer;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--bg-card-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+        }
+        
+        .play-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--bg-dark);
+            transition: all var(--transition-normal);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .video-card:hover .play-icon {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--primary-gold);
+        }
+        
+        .video-info {
+            padding: 1.5rem;
+        }
+        
+        .video-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        
+        .video-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== JOURNEY STEPS ===== */
+        .journey-steps {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .step-card {
+            position: relative;
+            padding-left: 4rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--bg-dark);
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-gold);
+        }
+        
+        .step-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        /* ===== CTA BOXES ===== */
+        .cta-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin-top: var(--spacing-lg);
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+        
+        .cta-box:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .cta-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+        
+        .cta-description {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* ===== CONTACT SECTION ===== */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+        
+        .contact-item:hover {
+            border-color: var(--primary-gold);
+            transform: translateX(10px);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-gold);
+        }
+        
+        .contact-details h3 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-details p {
+            color: var(--text-gray);
+        }
+        
+        .contact-details a {
+            color: var(--primary-gold);
+            transition: color var(--transition-fast);
+        }
+        
+        .contact-details a:hover {
+            color: var(--dark-gold);
+        }
+        
+        /* ===== VIDEO MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: var(--z-modal);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--vex-red);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--dark-red);
+            transform: rotate(90deg);
+        }
+        
+        .modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+        }
+        
+        .footer-text {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-gray);
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .footer-copyright {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ===== RESPONSIVE - TABLET ===== */
+        @media (max-width: 1024px) {
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+        }
+        
+        /* ===== RESPONSIVE - MOBILE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 14, 26, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left var(--transition-normal);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .hero {
+                min-height: 80vh;
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                max-width: 100%;
+            }
+            
+            .modal-close {
+                top: -50px;
+            }
+        }
+        
+        /* ===== RESPONSIVE - SMALL MOBILE ===== */
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .hero-banner {
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .step-card {
+                padding-left: 0;
+                padding-top: 5rem;
+            }
+            
+            .step-number {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+        
+        /* ===== ACCESSIBILITY ===== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        *:focus-visible {
+            outline: 2px solid var(--primary-gold);
+            outline-offset: 2px;
+        }
+        
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            header, footer, .modal, .cursor-glow, .mobile-menu-btn {
+                display: none;
+            }
+            
+            body {
+                color: black;
+                background: white;
+            }
+            
+            .card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-glow"></div>
+    
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#E63946;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
+                    <text x="100" y="130" font-family="Arial, sans-serif" font-size="80" font-weight="bold" text-anchor="middle" fill="url(#logoGradient)">MCS</text>
+                </svg>
+                <span class="logo-text">Mercer VEX</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#success">Success</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#join">Join Us</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-banner">🏆 4 Years World Championship Qualifiers</div>
+            <h1>Build. Code. Compete.</h1>
+            <p class="hero-subtitle">Join West Virginia's premier VEX Robotics program where students become engineers, leaders, and world champions</p>
+            
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Active Students</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Competitive Teams</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Partner Schools</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">World Championship Years</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="window.location.href='#join'">Join Our Program</button>
+                <button class="btn btn-secondary" onclick="window.location.href='#videos'">Watch Videos</button>
+            </div>
+        </section>
+        
+        <!-- Success Stories Section -->
+        <section id="success">
+            <div class="section-header">
+                <h2 class="section-title">Our Success Stories</h2>
+                <p class="section-subtitle">Celebrating excellence across Mercer County schools</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card achievement-card">
+                    <div class="achievement-icon">🥇</div>
+                    <h3 class="achievement-title">Tournament Champions</h3>
+                    <p class="achievement-school">Montcalm Elementary/Middle School</p>
+                    <p class="achievement-description">Dominated regional competitions with innovative robot designs and strategic gameplay, earning multiple first-place finishes.</p>
+                </div>
+                
+                <div class="card achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3 class="achievement-title">Excellence Award Winners</h3>
+                    <p class="achievement-school">Princeton Primary & Middle School</p>
+                    <p class="achievement-description">Recognized for outstanding robot design, comprehensive engineering notebooks, and exemplary team collaboration.</p>
+                </div>
+                
+                <div class="card achievement-card">
+                    <div class="achievement-icon">🎯</div>
+                    <h3 class="achievement-title">Skills Challenge Masters</h3>
+                    <p class="achievement-school">Straley Elementary School</p>
+                    <p class="achievement-description">Achieved top programming and driver skills scores through precision engineering and countless hours of practice.</p>
+                </div>
+                
+                <div class="card achievement-card">
+                    <div class="achievement-icon">⭐</div>
+                    <h3 class="achievement-title">Design Award Recipients</h3>
+                    <p class="achievement-school">Mercer Elementary School</p>
+                    <p class="achievement-description">Showcased creative problem-solving and engineering excellence with award-winning robot mechanisms.</p>
+                </div>
+                
+                <div class="card achievement-card">
+                    <div class="achievement-icon">🚀</div>
+                    <h3 class="achievement-title">State Qualifiers</h3>
+                    <p class="achievement-school">Multiple Mercer County Schools</p>
+                    <p class="achievement-description">Consistently qualifying teams for state championships, representing Mercer County with pride and skill.</p>
+                </div>
+                
+                <div class="card achievement-card">
+                    <div class="achievement-icon">🌟</div>
+                    <h3 class="achievement-title">World Championship Contenders</h3>
+                    <p class="achievement-school">Mercer County Program</p>
+                    <p class="achievement-description">Four consecutive years sending teams to the VEX Robotics World Championship, competing against the best globally.</p>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2 class="section-title">What Our Community Says</h2>
+            </div>
+            
+            <div class="grid">
+                <div class="card testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">VEX Robotics completely changed my perspective on what I could accomplish. I went from being afraid of programming to leading my team's autonomous code. Now I'm planning to study computer science in college!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SM</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">S.M.</div>
+                            <div class="testimonial-role">High School Team Captain</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Watching my daughter build confidence through robotics has been incredible. She's learned teamwork, problem-solving, and leadership skills that go far beyond the competition arena.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LJ</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">L.J.</div>
+                            <div class="testimonial-role">Parent of Elementary Student</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The engineering notebook process taught me documentation skills that I use daily in my engineering classes. VEX prepared me for college better than any other program.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">KR</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">K.R.</div>
+                            <div class="testimonial-role">Alumni, Engineering Student</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Every year I'm amazed by how much our students grow. They start as curious beginners and transform into confident engineers who can tackle any challenge.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">DB</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Derek Belcher</div>
+                            <div class="testimonial-role">Program Coordinator</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">I never thought I'd enjoy math and science until I joined robotics. Now I understand why these subjects matter, and I actually look forward to using them!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">TW</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">T.W.</div>
+                            <div class="testimonial-role">Middle School Team Member</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The skills our students develop—critical thinking, collaboration, perseverance—are exactly what they need for success in the 21st century. This program is transformational.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MH</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">M.H.</div>
+                            <div class="testimonial-role">School Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Videos Section -->
+        <section id="videos">
+            <div class="section-header">
+                <h2 class="section-title">See Us In Action</h2>
+                <p class="section-subtitle">Watch our teams compete, build, and succeed</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card video-card" data-video-id="dQw4w9WgXcQ">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">2025 Season Highlights</h3>
+                        <p class="video-description">Best moments from our championship season including tournament wins and robot reveals</p>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-video-id="dQw4w9WgXcQ">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">World Championship Journey</h3>
+                        <p class="video-description">Follow our teams as they compete on the world stage against international competitors</p>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-video-id="dQw4w9WgXcQ">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Behind the Scenes: Robot Build</h3>
+                        <p class="video-description">Watch our engineering process from initial design to final testing and competition</p>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-video-id="dQw4w9WgXcQ">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Student Interviews</h3>
+                        <p class="video-description">Hear directly from our students about their robotics experiences and future plans</p>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-video-id="dQw4w9WgXcQ">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Programming Tutorial</h3>
+                        <p class="video-description">Learn the basics of robot programming with our experienced mentors and students</p>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-video-id="dQw4w9WgXcQ">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Competition Day Experience</h3>
+                        <p class="video-description">Experience the energy and excitement of a full competition day from setup to awards</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Impact Section -->
+        <section id="impact">
+            <div class="section-header">
+                <h2 class="section-title">Why Robotics Matters</h2>
+                <p class="section-subtitle">Building skills that last a lifetime</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3 class="achievement-title">💡 Critical Thinking</h3>
+                    <p class="achievement-description">Students learn to analyze problems, test solutions, and iterate designs through hands-on engineering challenges that mirror real-world scenarios.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="achievement-title">🤝 Teamwork & Leadership</h3>
+                    <p class="achievement-description">Every team member plays a vital role, teaching collaboration, communication, and how to lead effectively in diverse groups.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="achievement-title">🎯 STEM Excellence</h3>
+                    <p class="achievement-description">Practical application of science, technology, engineering, and mathematics concepts in exciting, competitive environments that make learning fun.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="achievement-title">💪 Resilience & Perseverance</h3>
+                    <p class="achievement-description">Learning to overcome setbacks, debug problems, and keep pushing forward—essential skills for any career path and life in general.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="achievement-title">🚀 Career Preparation</h3>
+                    <p class="achievement-description">Direct exposure to engineering, programming, and project management gives students a competitive edge for college and careers.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="achievement-title">🌟 Confidence Building</h3>
+                    <p class="achievement-description">Achieving goals, competing successfully, and mastering complex skills builds self-confidence that extends to all areas of life.</p>
+                </div>
+            </div>
+            
+            <!-- Audience Cards -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2 class="section-title">Perfect For All Students</h2>
+            </div>
+            
+            <div class="grid">
+                <div class="card cta-box">
+                    <div class="cta-icon">👶</div>
+                    <h3 class="cta-title">Elementary (Grades K-5)</h3>
+                    <p class="cta-description">VEX IQ introduces young learners to robotics through age-appropriate challenges that develop problem-solving and creativity.</p>
+                </div>
+                
+                <div class="card cta-box">
+                    <div class="cta-icon">🎓</div>
+                    <h3 class="cta-title">Middle School (Grades 6-8)</h3>
+                    <p class="cta-description">Students advance to more complex engineering challenges, deeper programming, and competitive strategy development.</p>
+                </div>
+                
+                <div class="card cta-box">
+                    <div class="cta-icon">🏅</div>
+                    <h3 class="cta-title">High School (Grades 9-12)</h3>
+                    <p class="cta-description">VEX V5 provides college-level engineering experiences with advanced robotics, autonomous programming, and leadership opportunities.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Journey Section -->
+        <section id="journey">
+            <div class="section-header">
+                <h2 class="section-title">Your Journey to World Championship</h2>
+                <p class="section-subtitle">From beginner to world competitor in five steps</p>
+            </div>
+            
+            <div class="journey-steps">
+                <div class="card step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Join the Program</h3>
+                    <p class="step-description">Register in August for the upcoming season. No experience needed—just bring curiosity and enthusiasm to learn!</p>
+                </div>
+                
+                <div class="card step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Learn & Build</h3>
+                    <p class="step-description">September through November: Learn robot design, construction, programming, and strategic thinking through hands-on workshops.</p>
+                </div>
+                
+                <div class="card step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Compete Locally</h3>
+                    <p class="step-description">Test your skills at regional tournaments, earning rankings and qualifying points while gaining valuable competition experience.</p>
+                </div>
+                
+                <div class="card step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Advance to States</h3>
+                    <p class="step-description">Top-performing teams advance to state championships, competing against West Virginia's best for a chance at Worlds.</p>
+                </div>
+                
+                <div class="card step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">World Championship</h3>
+                    <p class="step-description">Excellence at states earns qualification to VEX Worlds—compete on the international stage with the best teams globally!</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join Section -->
+        <section id="join">
+            <div class="section-header">
+                <h2 class="section-title">Ready to Get Started?</h2>
+                <p class="section-subtitle">Multiple ways to join Mercer County's robotics family</p>
+            </div>
+            
+            <div class="cta-grid">
+                <div class="cta-box">
+                    <div class="cta-icon">🎒</div>
+                    <h3 class="cta-title">For Students</h3>
+                    <p class="cta-description">Join an existing team or start a new one at your school. Registration opens in August for the season starting in September.</p>
+                    <button class="btn btn-primary" onclick="window.location.href='mailto:robotics@merc.k12.wv.us?subject=Student%20Registration'">Register Now</button>
+                </div>
+                
+                <div class="cta-box">
+                    <div class="cta-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="cta-title">For Parents & Volunteers</h3>
+                    <p class="cta-description">Support our teams as a coach, mentor, or volunteer. No robotics experience required—just a passion for helping students succeed!</p>
+                    <button class="btn btn-primary" onclick="window.location.href='mailto:robotics@merc.k12.wv.us?subject=Volunteer%20Inquiry'">Get Involved</button>
+                </div>
+                
+                <div class="cta-box">
+                    <div class="cta-icon">🤝</div>
+                    <h3 class="cta-title">For Sponsors</h3>
+                    <p class="cta-description">Partner with us to provide equipment, funding, or expertise. Your support directly impacts students' futures in STEM.</p>
+                    <button class="btn btn-primary" onclick="window.location.href='mailto:robotics@merc.k12.wv.us?subject=Sponsorship%20Opportunity'">Become a Sponsor</button>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch with our program coordinator</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">👤</div>
+                    <div class="contact-details">
+                        <h3>Derek Belcher</h3>
+                        <p>VEX Robotics Program Coordinator</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:robotics@merc.k12.wv.us">robotics@merc.k12.wv.us</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+13044876440">(304) 487-6440</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close video">×</button>
+            <iframe id="videoFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <svg class="footer-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#E63946;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="90" fill="none" stroke="url(#footerLogoGradient)" stroke-width="8"/>
+                <text x="100" y="130" font-family="Arial, sans-serif" font-size="80" font-weight="bold" text-anchor="middle" fill="url(#footerLogoGradient)">MCS</text>
+            </svg>
+            
+            <p class="footer-text">Mercer County Schools VEX Robotics Program<br>Building tomorrow's engineers today</p>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#success">Success Stories</a>
+                <a href="#videos">Videos</a>
+                <a href="#impact">Impact</a>
+                <a href="#journey">Journey</a>
+                <a href="#join">Join Us</a>
+            </div>
+            
+            <p class="footer-copyright">
+                © 2025 Mercer County Schools. All rights reserved.<br>
+                VEX Robotics Competition is a program of the REC Foundation.
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Custom Cursor Effect (Desktop Only)
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            const cursorGlow = document.querySelector('.cursor-glow');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+            
+            document.addEventListener('mouseenter', () => {
+                cursorGlow.classList.add('active');
+            });
+            
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.classList.remove('active');
+            });
+        }
+        
+        // Active Navigation Link on Scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksArray = document.querySelectorAll('.nav-links a');
+        
+        function updateActiveLink() {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinksArray.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveLink);
+        
+        // Video Modal Functionality
+        const videoCards = document.querySelectorAll('.video-card');
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const modalClose = document.querySelector('.modal-close');
+        
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoId = card.getAttribute('data-video-id');
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            videoFrame.src = '';
+            document.body.style.overflow = '';
+        }
+        
+        modalClose.addEventListener('click', closeModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Lazy Loading for Performance
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+        
+        // Fade-in Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.card, .cta-box, .step-card').forEach(el => {
+            el.style.opacity = '0';
+            fadeObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
